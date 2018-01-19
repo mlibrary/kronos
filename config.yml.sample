@@ -1,0 +1,11 @@
+test1: 
+    enabled: true
+    lookahead: 3d
+    sourcecalendarid: "googlecalendarid"
+    regex: "(some regex)"
+    from: "someone@somewhere.com"
+    to: "recipient@somewhere.com"
+    subject: "Email subject"
+    smtp: "mail.umdl.umich.edu"
+    body: "Enter the body of the email here"
+

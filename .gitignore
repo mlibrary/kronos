@@ -1,2 +1,5 @@
 *.yml
 *.json
+.vendor/
+*.swp
+.bundle
