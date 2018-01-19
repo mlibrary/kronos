@@ -1,15 +1,21 @@
 # Kronos
-This is a simple script that reads information from a config.yml file to connect to the google calendar of our choice, use a regular expression to find the appropriate entries in the calendar and send an email that is formatted appropriately.
+
+This script sends email notifications based on events in a Google calendar.
 You can add multiple reminders in the config.yml file.
+
+## Process
+
+1. reads information from a config.yml file
+2. connect to the google calendar of our choice
+3. use a regular expression to find appropriate entries in the calendar
+4. send an email that is formatted appropriately.  
+
 
 Installation
 
 * clone the project from github
-
 * install bundler
-
 * cd to the folder you cloned the project
-
 * bundle install
 
 
