@@ -21,7 +21,7 @@ Installation
 
 Run
 
-`bundle exec ruby payroll_dates.rb`
+`bundle exec ruby bin/send_emails.rb`
 
 
 
