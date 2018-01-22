@@ -21,7 +21,7 @@ class AlertTriggers
   end
 
   def all_triggers
-    config.map do |name, trigger_hash| do
+    config.map do |name, trigger_hash|
       Trigger.new(trigger_hash.merge(name: name))
     end
   end
@@ -56,7 +56,11 @@ class Trigger < OpenStruct
   end
 
   def port
-    Integer(smtp.split(":").last || 25)
+    if smtp.index(":").nil?
+        25 
+    else 
+        smtp.split(":").last
+    end
   end
 
   def end_date
@@ -64,8 +68,10 @@ class Trigger < OpenStruct
   end
 
   def send_email!
+    h = host
+    p = port
     Mail.defaults do
-      delivery_method :smtp, address: host, port: port
+      delivery_method:smtp, address: h, port: p
     end
     mail = Mail.new(
       from: from,
@@ -75,8 +81,6 @@ class Trigger < OpenStruct
     )
     mail.header['X-Custom-Header'] = 'Sent by Kronos'
 
-    puts "\t#{event.start.date} - #{event.summary} - #{event.status}"
-    puts "\t\tSending email"
     mail.deliver
   end
 
@@ -129,7 +133,7 @@ class GoogleCalendarRetriever
   end
 
   def read_from_calendar(calendar_id, end_time)
-    googleservice.list_events(
+    service.list_events(
       calendar_id,
       single_events: true,
       order_by: 'startTime',
