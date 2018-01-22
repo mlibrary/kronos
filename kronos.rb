@@ -75,14 +75,13 @@ class Trigger < OpenStruct
       delivery_method:smtp, address: h, port: p
     end
 
-    b = binding
-    b.local_variable_set("event_date","#{end_date.strftime("%Y-%m-%d")}")
+    vars = {event_date: "#{end_date.strftime("%Y-%m-%d")}"}
 
     mail = Mail.new(
       from: from,
       to: to,
       subject: subject,
-      body: ERB.new(body).result(b),
+      body: body % vars,
     )
     mail.header['X-Custom-Header'] = 'Sent by Kronos'
 
