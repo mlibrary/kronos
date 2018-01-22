@@ -6,6 +6,7 @@ require 'json'
 require 'date'
 require 'mail'
 require 'ostruct'
+require 'erb'
 
 class AlertTriggers
   def initialize(configfile:)
@@ -73,11 +74,15 @@ class Trigger < OpenStruct
     Mail.defaults do
       delivery_method:smtp, address: h, port: p
     end
+
+    b = binding
+    b.local_variable_set("event_date","#{end_date.strftime("%Y-%m-%d")}")
+
     mail = Mail.new(
       from: from,
       to: to,
       subject: subject,
-      body: body,
+      body: ERB.new(body).result(b),
     )
     mail.header['X-Custom-Header'] = 'Sent by Kronos'
 
