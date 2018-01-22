@@ -6,7 +6,6 @@ require 'json'
 require 'date'
 require 'mail'
 require 'ostruct'
-require 'erb'
 
 class AlertTriggers
   def initialize(configfile:)
