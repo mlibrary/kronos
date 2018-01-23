@@ -1,6 +1,6 @@
 # In the body of the trigger below, you can use the following variables (more to be added as the need arises)
 #
-# event_date -> the date that the event takes place
+# %{event_date} -> the date that the event takes place
 test1: 
     enabled: true
     lookahead: 3d
