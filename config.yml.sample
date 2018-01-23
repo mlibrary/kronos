@@ -9,6 +9,6 @@ test1:
     from: "someone@somewhere.com"
     to: "recipient@somewhere.com"
     subject: "Email subject"
-    smtp: "mail.umdl.umich.edu"
+    smtp: "smtp.server.company.com"
     body: "Enter the body of the email here"
 
