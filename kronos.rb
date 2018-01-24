@@ -6,6 +6,7 @@ require 'json'
 require 'date'
 require 'mail'
 require 'ostruct'
+require 'active_support/all'
 
 class AlertTriggers
   def initialize(configfile:)
@@ -100,7 +101,7 @@ class Trigger < OpenStruct
       start_date.year,
       start_date.month,
       start_date.day,
-      hour,
+      hour,   
       start_date.minute,
       start_date.second
     )
@@ -141,7 +142,7 @@ class GoogleCalendarRetriever
       single_events: true,
       order_by: 'startTime',
       time_min: DateTime.now.iso8601,
-      time_max: end_time.iso8601
+      time_max: end_time.end_of_day.iso8601
     )
   end
 

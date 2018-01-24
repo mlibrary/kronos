@@ -12,6 +12,7 @@ triggers.active_triggers.each do |trigger|
     .select{|event| trigger.matches?(event)}
     .each do |event|
       trigger.send_email!
+      puts "Sending email..."
     end
 end
 
